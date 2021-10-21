@@ -9,7 +9,7 @@ SRCS_UTILS	=	$(shell ls ./utils/*.c)
 SRCS		=	$(SRCS_UTILS) main.c
 OBG			=	$(SRCS:%.c=%.o)
 
-CFLAGS		=	-Wall -Wextra -Werror 
+CFLAGS		=	#-Wall -Wextra -Werror 
 RM			=	rm -rf
 CC			=	gcc
 

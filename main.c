@@ -1,37 +1,28 @@
 #include "fractol.h"
+#include <stdio.h>
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	key_hook(int keycode, t_vars *vars)
 {
-	char	*dst;
-	
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
+	t_img_data	img;
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "fractol");
-	img.img = mlx_new_image(mlx, WIN_WIDTH, WIN_HEIGHT);
+	img.img = mlx_new_image(vars->mlx, WIN_WIDTH, WIN_HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	for (int w = 0; w < WIN_WIDTH; w++)
 		for (int h = 0; h < WIN_HEIGHT; h++)
 		{
-				my_mlx_pixel_put(&img, w, h, create_trgb(0, h * 255 / WIN_HEIGHT, w * 255 / WIN_WIDTH,  (w + h) * 255 / (WIN_HEIGHT + WIN_WIDTH)));	
+				pixel_put(&img, w, h, create_trgb(0, h * 255 / WIN_HEIGHT, w * 255  / WIN_WIDTH, keycode * 10));	
 		}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
+	return (0);
+}
+
+int	main(void)
+{
+	t_vars	vars;
+
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+	set_win_close(&vars);
+	mlx_loop(vars.mlx);
 }
