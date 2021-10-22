@@ -7,7 +7,7 @@ HEADER  	=	./header/fractol.h
 SRCS_UTILS	=	$(shell ls ./utils/*.c)
 
 SRCS		=	$(SRCS_UTILS) main.c
-OBG			=	$(SRCS:%.c=%.o)
+OBG			=	$(SRCS:%.c=%.o) $(LIBFT)
 
 CFLAGS		=	#-Wall -Wextra -Werror 
 RM			=	rm -rf
@@ -15,7 +15,7 @@ CC			=	gcc
 
 all:		run_libft $(NAME) 
 
-$(NAME):	${OBG} $(HEADER) $(LIBFT)
+$(NAME):	${OBG} $(HEADER)
 			$(CC) -lmlx -framework OpenGL -framework AppKit ${OBG} -o $(NAME)
 
 run_libft:	

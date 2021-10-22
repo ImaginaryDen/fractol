@@ -21,8 +21,6 @@ int	main(void)
 {
 	t_vars	vars;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	set_win_close(&vars);
+	init_mlx(&vars);
 	mlx_loop(vars.mlx);
 }
