@@ -11,8 +11,8 @@ SRCS_UTILS	=	$(shell ls ./utils/*.c)
 SRCS		=	$(SRCS_UTILS) main.c
 OBG			=	$(SRCS:%.c=%.o) $(LIBFT)
 
-CFLAGS		=	#-Wall -Wextra -Werror
-LFLAGS		=	-L./mlx_linux -lmlx -L$(INCLIB) -lXext -lX11 -lm
+CFLAGS		=	-o3 #-Wall -Wextra -Werror 
+LFLAGS		=	-L./mlx_linux -lmlx -L$(INCLIB) -lXext -lX11 -lm 
 RM			=	rm -rf
 CC			=	gcc
 
@@ -23,13 +23,13 @@ endif
 
 all:		run_libft $(NAME) 
 
-$(NAME):	${OBG} $(HEADER)
+$(NAME):	$(OBG)
 			$(CC) -o $(NAME) ${OBG} $(LFLAGS) 
 
 run_libft:	
 			@make -C $(PATH_LIB)
 
-%.o: 		%.c	$(PATH_HEADER)*
+%.o: 		%.c $(PATH_HEADER)*
 			$(CC) $(CFLAGS) -I$(PATH_HEADER) -Imlx_linux -I$(INC) -c $< -o $@
 
 clean:

@@ -21,10 +21,32 @@ int get_color(int i, int max_iter)
 	return (create_trgb(20, r, g, b));
 }
 
+int check_pointr(int x, int y, t_vars *vars, const long double re_c, const long double im_c)
+{
+	long double temp;
+	long double re;
+	long double im;
+	int			i;
+	const int	max_iter = vars->max_iter;
+
+	re = 4 * (x - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * vars->fractol.zoom) + vars->fractol.moveX;
+	im = 4 * (y - WIN_WIDTH * 0.5L) / (WIN_WIDTH * vars->fractol.zoom) + vars->fractol.moveY;
+	i = 0;
+	while (i < max_iter)
+	{
+		temp = re * re - im * im + re_c;
+		im = 2 * re * im + im_c;
+		re = temp;
+		if((re * re + im * im) > 4)
+			break;
+		i++;
+	}
+	return (i);
+}
+
 void	julia_set(t_vars *vars)
 {
 	t_fractol *fractol;
-	int	i;
 	int x;
 	int	y;
 
@@ -35,19 +57,7 @@ void	julia_set(t_vars *vars)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			fractol->newn.re = 4 * (x - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * fractol->zoom) + fractol->moveX;
-			fractol->newn.im = 4 * (y - WIN_WIDTH * 0.5L) / (WIN_WIDTH * fractol->zoom) + fractol->moveY;
-			i = 0;
-			while (i < vars->max_iter)
-			{
-				fractol->oldn = fractol->newn;
-				fractol->newn.re = fractol->oldn.re * fractol->oldn.re - fractol->oldn.im * fractol->oldn.im + fractol->cnst_num.re;
-				fractol->newn.im = 2 * fractol->oldn.re * fractol->oldn.im + fractol->cnst_num.im;
-				if((fractol->newn.re * fractol->newn.re + fractol->newn.im * fractol->newn.im) > 4)
-					break;
-				i++;
-			}
-			pixel_put(&vars->img, x, y, get_color(i, vars->max_iter));
+			pixel_put(&vars->img, x, y, get_color(check_pointr(x, y, vars, vars->fractol.cnst_num.re, vars->fractol.cnst_num.im), vars->max_iter));
 			x++;
 		}
 		y++;

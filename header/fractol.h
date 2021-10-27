@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 20:01:06 by tjamis            #+#    #+#             */
-/*   Updated: 2021/10/27 15:08:38 by tjamis           ###   ########.fr       */
+/*   Updated: 2021/10/27 20:04:45 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include "libft.h"
 # include "key.h"
 
-# define WIN_WIDTH	400
-# define WIN_HEIGHT 400
+# define WIN_WIDTH	500
+# define WIN_HEIGHT 500
 # define US_INT unsigned short int
-# define MAX_ITER 10
+# define MAX_ITER 200
+# define MIN_ITER 100
 
 typedef struct	s_img_data {
 	void	*img;
@@ -57,7 +58,6 @@ typedef struct	s_vars {
 	unsigned int	frame_counter;
 	t_fractol		fractol;
 	int				max_iter;
-	int				iter;
 }				t_vars;
 
 int		create_trgb(US_INT t, US_INT r, US_INT g, US_INT b);
