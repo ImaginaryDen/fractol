@@ -12,6 +12,8 @@ int init_mlx(t_vars *vars)
 	init_fractol(&vars->fractol);
 	mlx_key_hook(vars->win, key_hook, vars);
 	//mlx_loop_hook(vars->mlx, render, vars);
+	vars->max_iter = MAX_ITER;
+	vars->iter = 1;
 	julia_set(vars);
 	refresh_win(vars);
 	return (0);

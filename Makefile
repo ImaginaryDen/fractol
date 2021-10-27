@@ -16,6 +16,11 @@ LFLAGS		=	-L./mlx_linux -lmlx -L$(INCLIB) -lXext -lX11 -lm
 RM			=	rm -rf
 CC			=	gcc
 
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	INC		=	/usr/X11/include
+endif
+
 all:		run_libft $(NAME) 
 
 $(NAME):	${OBG} $(HEADER)
@@ -24,7 +29,7 @@ $(NAME):	${OBG} $(HEADER)
 run_libft:	
 			@make -C $(PATH_LIB)
 
-%.o: 		%.c	
+%.o: 		%.c	$(PATH_HEADER)*
 			$(CC) $(CFLAGS) -I$(PATH_HEADER) -Imlx_linux -I$(INC) -c $< -o $@
 
 clean:

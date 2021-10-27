@@ -1,12 +1,12 @@
 #include "fractol.h"
 
-int get_color(int i)
+int get_color(int i, int max_iter)
 {
 	int r;
 	int g;
 	int b;
 
-	if (i >= MAX_ITER)
+	if (i >= max_iter)
 	{
 		r = 141;
 		g = 26;
@@ -35,10 +35,10 @@ void	julia_set(t_vars *vars)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			fractol->newn.re = 1.5 * (x - WIN_WIDTH / 2) / (0.5 * fractol->zoom * WIN_WIDTH) + fractol->moveX;
-			fractol->newn.im = (y - WIN_HEIGHT / 2) / (0.5 * fractol->zoom * WIN_HEIGHT) + fractol->moveY;
+			fractol->newn.re = 4 * (x - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * fractol->zoom) + fractol->moveX;
+			fractol->newn.im = 4 * (y - WIN_WIDTH * 0.5L) / (WIN_WIDTH * fractol->zoom) + fractol->moveY;
 			i = 0;
-			while (i < MAX_ITER)
+			while (i < vars->max_iter)
 			{
 				fractol->oldn = fractol->newn;
 				fractol->newn.re = fractol->oldn.re * fractol->oldn.re - fractol->oldn.im * fractol->oldn.im + fractol->cnst_num.re;
@@ -47,7 +47,7 @@ void	julia_set(t_vars *vars)
 					break;
 				i++;
 			}
-			pixel_put(&vars->img, x, y, get_color(i));
+			pixel_put(&vars->img, x, y, get_color(i, vars->max_iter));
 			x++;
 		}
 		y++;
