@@ -6,7 +6,7 @@ int	win_close(int keycode, t_vars *vars)
 	if (keycode == 53 || keycode == 65307)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_image(vars->mlx, vars->img.img);
+		mlx_destroy_image(vars->mlx, vars->img->img);
 		exit(0);
 	}
 	return (0);

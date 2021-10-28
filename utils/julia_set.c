@@ -21,7 +21,7 @@ int get_color(int i, int max_iter)
 	return (create_trgb(20, r, g, b));
 }
 
-int check_pointr(int x, int y, t_vars *vars, const long double re_c, const long double im_c)
+int	check_pointr(int x, int y, t_vars *vars, const long double re_c, const long double im_c)
 {
 	long double temp;
 	long double re;
@@ -57,7 +57,7 @@ void	julia_set(t_vars *vars)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			pixel_put(&vars->img, x, y, get_color(check_pointr(x, y, vars, vars->fractol.cnst_num.re, vars->fractol.cnst_num.im), vars->max_iter));
+			pixel_put(vars->img, x, y, get_color(check_pointr(x, y, vars, vars->fractol.cnst_num.re, vars->fractol.cnst_num.im), vars->max_iter));
 			x++;
 		}
 		y++;

@@ -26,6 +26,7 @@
 
 #  define KEY_MINUS	65453
 #  define KEY_PLUS	65451
+#  define KEY_SPACE	32
 # endif
 
 #endif
