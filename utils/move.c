@@ -16,7 +16,8 @@ void	move_x(t_vars *vars, const double shift)
 			if (x - shift < WIN_WIDTH && x - shift > 0)
 				pixel_put(new_img, x , y , *(unsigned int *)get_x_y(vars, x - shift, y));
 			else
-				pixel_put(new_img, x, y , get_color(check_pointr(x, y, vars, vars->fractol.cnst_num.re, vars->fractol.cnst_num.im), vars->max_iter));
+				pixel_put(new_img, x, y , get_color(vars->get_point(x, y, vars),
+						vars->max_iter));
 			x++;
 		}
 		y++;
@@ -43,7 +44,8 @@ void	move_y(t_vars *vars, const double shift)
 			if (y - shift < WIN_WIDTH && y - shift > 0)
 				pixel_put(new_img, x , y , *(unsigned int *)get_x_y(vars, x, y - shift));
 			else
-				pixel_put(new_img, x, y , get_color(check_pointr(x, y, vars, vars->fractol.cnst_num.re, vars->fractol.cnst_num.im), vars->max_iter));
+				pixel_put(new_img, x, y , get_color(vars->get_point(x, y, vars),
+						vars->max_iter));
 			x++;
 		}
 		y++;

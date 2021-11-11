@@ -1,27 +1,6 @@
 #include "fractol.h"
 
-int get_color(int i, int max_iter)
-{
-	int r;
-	int g;
-	int b;
-
-	if (i >= max_iter)
-	{
-		r = 141;
-		g = 26;
-		b = 187;
-	}
-	else
-	{
-		r = (i * 12) % 255;
-		g = (i * 0) % 255;
-		b = (i * 6) % 255;
-	}
-	return (create_trgb(20, r, g, b));
-}
-
-int	julia_set(int x, int y, t_vars *vars)
+int	mandelbrot_set(int x, int y, t_vars *vars)
 {
 	long double temp;
 	t_complex	complex;
@@ -31,7 +10,7 @@ int	julia_set(int x, int y, t_vars *vars)
 
 	complex.re = 4 * (x - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * vars->fractol.zoom) + vars->fractol.moveX;
 	complex.im = 4 * (y - WIN_WIDTH * 0.5L) / (WIN_WIDTH * vars->fractol.zoom) + vars->fractol.moveY;
-	const_complex = vars->fractol.cnst_num;
+	const_complex = complex;
 	i = 0;
 	while (i < max_iter)
 	{
@@ -44,4 +23,3 @@ int	julia_set(int x, int y, t_vars *vars)
 	}
 	return (i);
 }
-

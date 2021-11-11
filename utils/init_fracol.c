@@ -7,6 +7,4 @@ void init_fractol(t_fractol *fractol)
 	fractol->moveX = 0.;
 	fractol->moveY = 0.;
 	fractol->zoom = 1;
-	fractol->max.re = 0;
-	fractol->max.im = 0;
 }
