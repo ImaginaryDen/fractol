@@ -2,41 +2,39 @@
 
 int key_hook(int key, t_vars *vars)
 {
-	const double shift = 0.02500000000000000139 ;
+	const double shift = WIN_HEIGHT / (20. * vars->fractol.zoom)  ;
 
 	if (key == KEY_A)
 	{
-		vars->fractol.moveX -= 0.1 / vars->fractol.zoom;
-		move_x(vars, WIN_WIDTH * shift);
+		vars->fractol.moveX -= shift ;
+		move_x(vars, shift * vars->fractol.zoom);
 	}
 	if (key == KEY_D)
 	{
-		vars->fractol.moveX += 0.1 / vars->fractol.zoom;
-		move_x(vars, WIN_WIDTH * -shift);
+		vars->fractol.moveX += shift;
+		move_x(vars, -shift * vars->fractol.zoom);
 	}
 	if (key == KEY_W)
 	{
-		vars->fractol.moveY -= 0.1 / vars->fractol.zoom;
-		move_y(vars, WIN_HEIGHT * shift);
+		vars->fractol.moveY -= shift;
+		move_y(vars, shift * vars->fractol.zoom);
 	}
 	if (key == KEY_S)
 	{
-		vars->fractol.moveY += 0.1 / vars->fractol.zoom;
-		move_y(vars, WIN_HEIGHT * -shift);
+		vars->fractol.moveY += shift;
+		move_y(vars, -shift * vars->fractol.zoom);
 	}
 	if (key == KEY_PLUS)
 	{
-		if(vars->max_iter < MAX_ITER)
-			vars->max_iter += 5;
 		vars->fractol.zoom *= 2;
-		full_set(vars);
+		move_p(vars);
+		//full_set(vars);
 	}
 	if (key == KEY_MINUS)
 	{
-		if  (vars->max_iter > MIN_ITER)
-			vars->max_iter -= 5;
 		vars->fractol.zoom /= 2;
-		full_set(vars);
+		move_m(vars);
+		//full_set(vars);
 	}
 	if (key == KEY_Q)
 		vars->max_iter-= 10;

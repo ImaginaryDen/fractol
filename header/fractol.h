@@ -25,8 +25,8 @@
 # define WIN_HEIGHT 1000.L
 
 # define US_INT unsigned short int
-# define MAX_ITER 200
-# define MIN_ITER 100
+# define MAX_ITER 400
+# define MIN_ITER 300
 
 typedef struct	s_img_data {
 	void	*img;
@@ -70,12 +70,14 @@ void		refresh_win(t_vars *vars);
 void		init_fractol(t_fractol *fractol);
 int			key_hook(int key, t_vars *vars);
 t_img_data	*init_new_img(void *mlx);
-void		*get_x_y(t_vars *vars, int x, int y);
+void		*get_x_y(t_img_data *img, int x, int y);
 void		move_y(t_vars *vars, const double shift);
 void		move_x(t_vars *vars, const double shift);
 int			get_color(int i, int max_iter);
 int			julia_set(int x, int y, t_vars *vars);
 int			mandelbrot_set(int x, int y, t_vars *vars);
 void		full_set(t_vars *vars);
+void		move_p(t_vars *vars);
+void		move_m(t_vars *vars);
 
 #endif

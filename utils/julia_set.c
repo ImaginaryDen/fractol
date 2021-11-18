@@ -29,8 +29,8 @@ int	julia_set(int x, int y, t_vars *vars)
 	int			i;
 	const int	max_iter = vars->max_iter;
 
-	complex.re = 4 * (x - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * vars->fractol.zoom) + vars->fractol.moveX;
-	complex.im = 4 * (y - WIN_WIDTH * 0.5L) / (WIN_WIDTH * vars->fractol.zoom) + vars->fractol.moveY;
+	complex.re = 4 * (x + vars->fractol.moveX * vars->fractol.zoom - WIN_HEIGHT * 0.5L) / (WIN_HEIGHT * vars->fractol.zoom);
+	complex.im = 4 * (y + vars->fractol.moveY * vars->fractol.zoom - WIN_WIDTH * 0.5L) / (WIN_WIDTH * vars->fractol.zoom);
 	const_complex = vars->fractol.cnst_num;
 	i = 0;
 	while (i < max_iter)
