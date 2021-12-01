@@ -12,7 +12,7 @@ SRCS		=	$(SRCS_UTILS) main.c
 OBG			=	$(SRCS:%.c=%.o) $(LIBFT)
 
 CFLAGS		=	-o3 #-Wall -Wextra -Werror 
-LFLAGS		=	-L./mlx_linux -lmlx -L$(INCLIB) -lXext -lX11 -lm 
+LFLAGS		=	-L./mlx -lmlx -L$(INCLIB) -lXext -lX11 -lm 
 RM			=	rm -rf
 CC			=	gcc
 
@@ -27,19 +27,19 @@ $(NAME):	$(OBG)
 			$(CC) -o $(NAME) ${OBG} $(LFLAGS) 
 
 run_libft:	
-			@make -C ./mlx_linux
-			@make -C $(PATH_LIB)
+			@make -sC ./mlx
+			@make -sC $(PATH_LIB)
 
 %.o: 		%.c $(PATH_HEADER)*
-			$(CC) $(CFLAGS) -I$(PATH_HEADER) -Imlx_linux -I$(INC) -c $< -o $@
+			$(CC) $(CFLAGS) -I$(PATH_HEADER) -Imlx -I$(INC) -c $< -o $@
 
 clean:
 			$(RM) ${OBG} ${OBG_BONUS}
-			@make -C $(PATH_LIB) clean
+			@make -sC $(PATH_LIB) clean
 
 fclean:		clean
 			$(RM) $(NAME) $(NAME_BONUS)
-			@make -C $(PATH_LIB) fclean
+			@make -sC $(PATH_LIB) fclean
 
 re:			fclean all
 

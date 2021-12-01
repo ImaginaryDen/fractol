@@ -1,8 +1,9 @@
 #include "fractol.h"
+#include <stdio.h>
 
 int key_hook(int key, t_vars *vars)
 {
-	const double shift = WIN_HEIGHT / (20. * vars->fractol.zoom)  ;
+	const double shift = WIN_HEIGHT / (20. * vars->fractol.zoom);
 
 	if (key == KEY_A)
 	{
