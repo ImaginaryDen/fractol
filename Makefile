@@ -27,6 +27,7 @@ $(NAME):	$(OBG)
 			$(CC) -o $(NAME) ${OBG} $(LFLAGS) 
 
 run_libft:	
+			@make -C ./mlx_linux
 			@make -C $(PATH_LIB)
 
 %.o: 		%.c $(PATH_HEADER)*
