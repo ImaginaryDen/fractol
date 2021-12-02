@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 20:01:06 by tjamis            #+#    #+#             */
-/*   Updated: 2021/12/01 16:24:55 by tjamis           ###   ########.fr       */
+/*   Updated: 2021/12/02 18:52:10 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # define WIN_HEIGHT 1000.L
 
 # define US_INT unsigned short int
-# define MAX_ITER 400
-# define MIN_ITER 300
+# define MAX_ITER 100
 
 typedef struct	s_img_data {
 	void	*img;
@@ -80,5 +79,7 @@ void		full_set(t_vars *vars);
 void		move_p(t_vars *vars);
 void		move_m(t_vars *vars);
 int			mouse_hook(int button, int x, int y, t_vars *vars);
+int			close_win(int key, t_vars *vars);
+void		get_show(t_vars *vars);
 
 #endif
