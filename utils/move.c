@@ -17,7 +17,7 @@ void	move_x(t_vars *vars, const double shift)
 				pixel_put(new_img, x , y , *(unsigned int *)get_x_y(vars->img, x - shift, y));
 			else
 				pixel_put(new_img, x, y , get_color(vars->get_point(x, y, vars),
-						vars->max_iter));
+						vars->max_iter, vars->color));
 			x++;
 		}
 		y++;
@@ -45,7 +45,7 @@ void	move_y(t_vars *vars, const double shift)
 				pixel_put(new_img, x , y , *(unsigned int *)get_x_y(vars->img, x, y - shift));
 			else
 				pixel_put(new_img, x, y , get_color(vars->get_point(x, y, vars),
-						vars->max_iter));
+						vars->max_iter, vars->color));
 			x++;
 		}
 		y++;
@@ -67,7 +67,7 @@ void image_zero(t_img_data *img)
 		x = 0;
 		while (x < WIN_HEIGHT)
 		{
-			pixel_put(img, x, y, get_color(0,1));
+			pixel_put(img, x, y, get_color(0,1,1));
 			x++;
 		}
 		y++;
@@ -134,8 +134,8 @@ void	move_p(t_vars *vars)
 		x = 0;
 		while(x < WIN_WIDTH)
 		{
-			if (*(unsigned int *)get_x_y(new_img, x, y) == get_color(0, 1))
-				pixel_put(new_img, x, y,  get_color(vars->get_point(x, y, vars), vars->max_iter));
+			if (*(unsigned int *)get_x_y(new_img, x, y) == get_color(0, 1, vars->color))
+				pixel_put(new_img, x, y,  get_color(vars->get_point(x, y, vars), vars->max_iter, vars->color));
 			x++;
 		}
 		y++;
@@ -171,8 +171,8 @@ void	move_m(t_vars *vars)
 		x = 0;
 		while(x < WIN_WIDTH)
 		{
-			if (*(unsigned int *)get_x_y(new_img, x, y) == get_color(0, 1))
-				pixel_put(new_img, x, y,  get_color(vars->get_point(x, y, vars), vars->max_iter));
+			if (*(unsigned int *)get_x_y(new_img, x, y) == get_color(0, 1, vars->color))
+				pixel_put(new_img, x, y,  get_color(vars->get_point(x, y, vars), vars->max_iter, vars->color));
 			x++;
 		}
 		y++;

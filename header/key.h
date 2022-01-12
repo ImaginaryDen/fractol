@@ -15,6 +15,7 @@
 #  define KEY_S		115
 #  define KEY_D		100
 #  define KEY_W		119
+#  define KEY_C		99
 
 #  define KEY_Q		113
 #  define KEY_E		101

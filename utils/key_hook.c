@@ -29,18 +29,24 @@ int key_hook(int key, t_vars *vars)
 	{
 		vars->fractol.zoom *= 2;
 		move_p(vars);
-		//full_set(vars);
 	}
 	if (key == KEY_MINUS)
 	{
 		vars->fractol.zoom /= 2;
 		move_m(vars);
-		//full_set(vars);
 	}
 	if (key == KEY_Q)
+	{
 		vars->max_iter-= 10;
+		ft_putnbr_fd(vars->max_iter, 1);
+		ft_putstr_fd("\n", 1);
+	}
 	if (key == KEY_E)
+	{
 		vars->max_iter+= 10;
+		ft_putnbr_fd(vars->max_iter, 1);
+		ft_putstr_fd("\n", 1);
+	}
 	if (key == KEY_ESC)
 	{
 		mlx_destroy_image(vars->mlx, vars->img->img);
@@ -49,10 +55,14 @@ int key_hook(int key, t_vars *vars)
 		exit(0);
 	}
 	if (key == KEY_SPACE)
-	{
-		ft_putnbr_fd(vars->max_iter, 1);
-		ft_putstr_fd("\n", 1);
 		full_set(vars);
+	if (key == KEY_C)
+	{
+		if(vars->color == 1)
+			vars->color = 2;
+		else
+			vars->color = 1;
+		full_set(vars);	
 	}
 	refresh_win(vars);
 	return (0);

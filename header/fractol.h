@@ -51,6 +51,7 @@ typedef struct	s_fractol
 }				t_fractol;
 
 typedef struct	s_vars {
+	int				color;
 	void			*mlx;
 	void			*win;
 	t_img_data		*img;
@@ -72,7 +73,7 @@ t_img_data	*init_new_img(void *mlx);
 void		*get_x_y(t_img_data *img, int x, int y);
 void		move_y(t_vars *vars, const double shift);
 void		move_x(t_vars *vars, const double shift);
-int			get_color(int i, int max_iter);
+int			get_color(int i, int max_iter, int color);
 int			julia_set(int x, int y, t_vars *vars);
 int			mandelbrot_set(int x, int y, t_vars *vars);
 void		full_set(t_vars *vars);
@@ -81,5 +82,6 @@ void		move_m(t_vars *vars);
 int			mouse_hook(int button, int x, int y, t_vars *vars);
 int			close_win(int key, t_vars *vars);
 void		get_show(t_vars *vars);
+int			burn_set(int x, int y, t_vars *vars);
 
 #endif

@@ -14,7 +14,7 @@ void full_set(t_vars *vars)
 		while (x < WIN_WIDTH)
 		{
 			pixel_put(vars->img, x, y, get_color(vars->get_point(x, y, vars),
-					vars->max_iter));
+					vars->max_iter, vars->color));
 			x++;
 		}
 		y++;
