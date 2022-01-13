@@ -83,5 +83,9 @@ int			mouse_hook(int button, int x, int y, t_vars *vars);
 int			close_win(int key, t_vars *vars);
 void		get_show(t_vars *vars);
 int			burn_set(int x, int y, t_vars *vars);
+void		image_zero(t_img_data *img);
+void		set_sq_color(int x, int y, t_img_data *img, unsigned int color);
+void		fill_space(t_vars *vars, t_img_data *new_img);
+void		fill_sq(t_vars *vars, t_img_data *new_img, int x, int y);
 
 #endif

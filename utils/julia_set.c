@@ -8,20 +8,11 @@ int get_color(int i, int max_iter, int color)
 
 	if (i >= max_iter)
 	{
-		if (color == 1)
-		{
-			r = 141;
-			g = 26;
-			b = 187;
-		}else
-		{
-			r = 0;
-			g = 155;
-			b = 75;
-		}
+		r = 141 - 141 * (color - 1);
+		g = 26 + 124 * (color - 1);
+		b = 187 - 112 * (color - 1);
 	}
 	else
-	{
 		if (color == 1)
 		{
 			r = (i * 12) % 255;
@@ -33,7 +24,6 @@ int get_color(int i, int max_iter, int color)
 			g = (i * 12) % 255;
 			b = (i * 8) % 255;
 		}
-	}
 	return (create_trgb(20, r, g, b));
 }
 

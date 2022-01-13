@@ -1,14 +1,7 @@
 #include "fractol.h"
 
-int init_mlx(t_vars *vars, int argc, char **argv)
+int init_set(t_vars *vars, int argc, char **argv)
 {
-	vars->mlx = mlx_init();
-	if (vars->mlx == NULL)
-		return(0);
-	vars->color = 1;
-	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "fractol");
-	vars->img = init_new_img(vars->mlx);
-	init_fractol(&vars->fractol);
 	if (!ft_strncmp(argv[1], "julia", 6))
 	{
 		vars->get_point = julia_set;
@@ -23,6 +16,20 @@ int init_mlx(t_vars *vars, int argc, char **argv)
 	else if (!ft_strncmp(argv[1], "burn", 4))
 		vars->get_point = burn_set;
 	else
+		return (1);
+	return (0);
+}
+
+int init_mlx(t_vars *vars, int argc, char **argv)
+{
+	vars->mlx = mlx_init();
+	if (vars->mlx == NULL)
+		return(0);
+	vars->color = 1;
+	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "fractol");
+	vars->img = init_new_img(vars->mlx);
+	init_fractol(&vars->fractol);
+	if (init_set(vars, argc, argv))
 		return (1);
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_mouse_hook(vars->win, mouse_hook, vars);
