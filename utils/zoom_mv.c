@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zoom_mv.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 13:34:35 by tjamis            #+#    #+#             */
+/*   Updated: 2022/01/18 14:55:35 by tjamis           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"fractol.h"
 
 void	move_p(t_vars *vars)
 {
-	int	x;
-	int	y;
-	t_img_data *new_img;
+	int			x;
+	int			y;
+	t_img_data	*new_img;
 
 	new_img = init_new_img(vars->mlx);
 	image_zero(new_img);
 	y = WIN_HEIGHT / 4;
-	while(y < WIN_HEIGHT - WIN_HEIGHT / 4)
+	while (y < WIN_HEIGHT - WIN_HEIGHT / 4)
 	{
 		x = WIN_WIDTH / 4;
-		while(x < WIN_WIDTH - WIN_WIDTH / 4)
+		while (x < WIN_WIDTH - WIN_WIDTH / 4)
 		{
 			fill_sq(vars, new_img, x, y);
 			x++;
@@ -27,20 +39,20 @@ void	move_p(t_vars *vars)
 
 void	move_m(t_vars *vars)
 {
-	int	x;
-	int	y;
-	unsigned int color;
-	t_img_data *new_img;
+	int				x;
+	int				y;
+	t_img_data		*new_img;
 
 	new_img = init_new_img(vars->mlx);
 	image_zero(new_img);
 	y = WIN_HEIGHT / 4;
-	while(y < WIN_HEIGHT - WIN_HEIGHT / 4)
+	while (y < WIN_HEIGHT - WIN_HEIGHT / 4)
 	{
 		x = WIN_WIDTH / 4;
-		while(x < WIN_WIDTH - WIN_WIDTH / 4)
+		while (x < WIN_WIDTH - WIN_WIDTH / 4)
 		{
-			pixel_put(new_img, x, y, *(unsigned int *)get_x_y(vars->img, x + (x - WIN_WIDTH / 2 ), y + (y - WIN_HEIGHT / 2)));
+			pixel_put(new_img, x, y, *(unsigned int *)get_x_y(vars->img,
+					x + (x - WIN_WIDTH / 2 ), y + (y - WIN_HEIGHT / 2)));
 			x++;
 		}
 		y++;
