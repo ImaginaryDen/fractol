@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:29:33 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/18 16:28:22 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:41:32 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	key_move(int key, t_vars *vars)
 {
 	const double	shift = WIN_HEIGHT / (20. * vars->fractol.zoom);
 
-	if (key == KEY_A)
+	if (key == KEY_A || key == KEY_LEFT)
 	{
 		vars->fractol.movex -= shift;
 		move_x(vars, shift * vars->fractol.zoom);
 	}
-	if (key == KEY_D)
+	if (key == KEY_D || key == KEY_RIGHT)
 	{
 		vars->fractol.movex += shift;
 		move_x(vars, -shift * vars->fractol.zoom);
 	}
-	if (key == KEY_W)
+	if (key == KEY_W || key == KEY_UP)
 	{
 		vars->fractol.movey -= shift;
 		move_y(vars, shift * vars->fractol.zoom);
 	}
-	if (key == KEY_S)
+	if (key == KEY_S || key == KEY_DOWN)
 	{
 		vars->fractol.movey += shift;
 		move_y(vars, -shift * vars->fractol.zoom);
