@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:27:48 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/18 14:58:49 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:30:03 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_set(t_vars *vars, int argc, char **argv)
 	if (!ft_strncmp(argv[1], "julia", 7))
 	{
 		vars->get_point = julia_set;
-		if (argc >= 4)
+		if (argc == 4)
 		{
 			vars->fractol.cnst_num.re = ft_atoi(argv[2]) / 500.;
 			vars->fractol.cnst_num.im = ft_atoi(argv[3]) / 500.;
@@ -45,7 +45,7 @@ int	init_mlx(t_vars *vars, int argc, char **argv)
 	if (init_set(vars, argc, argv))
 		return (1);
 	mlx_mouse_hook(vars->win, mouse_hook, vars);
-	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
+	mlx_hook(vars->win, 2, 1L, key_hook, vars);
 	mlx_hook(vars->win, 17, 0, close_win, vars);
 	full_set(vars);
 	refresh_win(vars);

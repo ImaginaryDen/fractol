@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:36:09 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/18 13:36:13 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:27:58 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #  define KEY_D		100
 #  define KEY_W		119
 #  define KEY_C		99
+#  define KEY_F		102
 
 #  define KEY_Q		113
 #  define KEY_E		101

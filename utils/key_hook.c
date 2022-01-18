@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:29:33 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/18 14:37:33 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:28:22 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ void	key_zoom(int key, t_vars *vars)
 	{
 		vars->fractol.zoom /= 2;
 		move_m(vars);
+	}
+	if (key == KEY_F)
+	{
+		vars->fractol.zoom = 1;
+		vars->fractol.movey = 0;
+		vars->fractol.movex = 0;
+		full_set(vars);
 	}
 }
 
