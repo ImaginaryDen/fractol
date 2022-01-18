@@ -5,13 +5,14 @@ PATH_LIB 	=	./libft/
 HEADER  	=	./header/fractol.h
 INC			=	/usr/include
 INCLIB		=	$(INC)/../lib
+OBJ_DIR		=	./objects
 
 SRCS_UTILS	=	$(shell ls ./utils/*.c)
 
-SRCS		=	$(SRCS_UTILS) main.c
-OBG			=	$(SRCS:%.c=%.o) $(LIBFT)
+SRC		=	$(SRCS_UTILS) main.c
+OBG			=	$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o)) $(LIBFT)
 
-CFLAGS		=	-o3 #-Wall -Wextra -Werror 
+CFLAGS		=	-o3 -I$(PATH_HEADER) -Imlx -I$(INC) #-Wall -Wextra -Werror 
 LFLAGS		=	-L./mlx -lmlx -L$(INCLIB) -lXext -lX11 -lm 
 RM			=	rm -rf
 CC			=	gcc
@@ -30,15 +31,17 @@ run_libft:
 			@make -sC ./mlx
 			@make -sC $(PATH_LIB)
 
-%.o: 		%.c $(PATH_HEADER)*
-			$(CC) $(CFLAGS) -I$(PATH_HEADER) -Imlx -I$(INC) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c $(PATH_HEADER)*
+			mkdir -p $(dir $@)
+			$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			$(RM) ${OBG} ${OBG_BONUS}
+			$(RM) ${OBJ_DIR}
+			@make -sC ./mlx clean
 			@make -sC $(PATH_LIB) clean
 
 fclean:		clean
-			$(RM) $(NAME) $(NAME_BONUS)
+			$(RM) $(NAME)
 			@make -sC $(PATH_LIB) fclean
 
 re:			fclean all
