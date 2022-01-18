@@ -6,7 +6,7 @@
 /*   By: tjamis <tjamis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 13:11:49 by tjamis            #+#    #+#             */
-/*   Updated: 2022/01/18 16:22:08 by tjamis           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:49:42 by tjamis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main(int argc, char **argv)
 {
 	t_vars	vars;
 
+	vars.img = NULL;
+	vars.win = NULL;
+	vars.mlx = NULL;
 	if (argc < 2)
 	{
 		menu();
